@@ -5,7 +5,9 @@ function Dot(xpos, ypos){
 		this.pos = createVector(width / 2, height / 2);
 	}
 
-	this.vel = createVector(speed * random(-1, 1), speed * random(-1, 1));
+	this.vel = createVector(initialDotSpeed * random(-1, 1), initialDotSpeed * random(-1, 1));
+	// this.vel = createVector(initialDotSpeed * random(1, 2), 0);
+
 	this.colorCode = color(random(50, 255), random(50, 255), random(50, 255));
 	// this.colorCode = color(255);
 
@@ -23,20 +25,32 @@ function Dot(xpos, ypos){
 
 	// Draws line from this to other.
 	this.drawLineTo = function(other){
-		push();
-		var distance = this.getDistance(other);
-		var alpha = map(distance, 0, maxDistance, 255, 0);
-		stroke(
-			this.colorCode.levels[0],
-			this.colorCode.levels[1],
-			this.colorCode.levels[2],
-			alpha
-		);
-		line(this.pos.x, this.pos.y, other.pos.x, other.pos.y);
-		pop();
+		if(this.pos != other.pos){
+			push();
+			var distance = this.getDistance(other);
+			var alpha = map(distance, 0, maxDistance, 255, 0);
+			stroke(
+				this.colorCode.levels[0],
+				this.colorCode.levels[1],
+				this.colorCode.levels[2],
+				alpha
+			);
+			line(this.pos.x, this.pos.y, other.pos.x, other.pos.y);
+			pop();
+		}
 	}
 
 	this.move = function(){
+		// Apply gravity.
+		if(gravityCenter){
+			var force = p5.Vector.sub(middle, this.pos);
+			var dsquared = force.magSq();
+			dsquared = max(1000, dsquared);
+			var strength = gravityStrength / dsquared;
+			force.setMag(strength);
+			this.vel.add(force);
+		}
+
 		// Move.
 		this.pos.add(this.vel);
 
