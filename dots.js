@@ -6,7 +6,7 @@ function Dot(xpos, ypos){
 	}
 
 	// this.vel = createVector(initialDotSpeed * random(-1, 1), initialDotSpeed * random(-1, 1));
-	this.vel = createVector(0, initialDotSpeed * 1.5);
+	this.vel = createVector(initialDotSpeed * 1.5, 0 );
 
 	this.colorCode = color(random(50, 255), random(50, 255), random(50, 255));
 	// this.colorCode = color(255);
