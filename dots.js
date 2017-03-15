@@ -1,7 +1,7 @@
 function Dot(xpos, ypos){
 	this.pos = createVector(xpos, ypos);
 	this.vel = createVector(speed * random(-1, 1), speed * random(-1, 1));
-	this.colorCode = color(random(50, 255), random(50, 255), random(50, 255), 127);
+	this.colorCode = color(random(50, 255), random(50, 255), random(50, 255), 255);
 
 	this.show = function(){
 		push();
