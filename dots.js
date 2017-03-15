@@ -1,12 +1,12 @@
 function Dot(xpos, ypos){
-	if(xpos && ypos){
+	if(xpos || ypos){
 		this.pos = createVector(xpos, ypos);
 	}else{
 		this.pos = createVector(width / 2, height / 2);
 	}
 
 	this.vel = createVector(initialDotSpeed * random(-1, 1), initialDotSpeed * random(-1, 1));
-	// this.vel = createVector(0, initialDotSpeed * 1);
+	// this.vel = createVector(1, 0 );
 
 	this.colorCode = color(random(50, 255), random(50, 255), random(50, 255));
 	// this.colorCode = color(255);
@@ -45,10 +45,7 @@ function Dot(xpos, ypos){
 		// Apply gravity.
 		if(gravityCenter){
 			var force = p5.Vector.sub(middle, this.pos);
-			var dsquared = force.magSq();
-			dsquared = constrain(dsquared, 1000, 1000);
-			var strength = gravityStrength / dsquared;
-			force.setMag(strength);
+			force.setMag(gravityStrength);
 			this.vel.add(force);
 		}
 
