@@ -1,7 +1,13 @@
 function Dot(xpos, ypos){
-	this.pos = createVector(xpos, ypos);
+	if(xpos && ypos){
+		this.pos = createVector(xpos, ypos);
+	}else{
+		this.pos = createVector(width / 2, height / 2);
+	}
+
 	this.vel = createVector(speed * random(-1, 1), speed * random(-1, 1));
-	this.colorCode = color(random(50, 255), random(50, 255), random(50, 255), 255);
+	this.colorCode = color(random(50, 255), random(50, 255), random(50, 255));
+	// this.colorCode = color(255);
 
 	this.show = function(){
 		push();
@@ -18,19 +24,20 @@ function Dot(xpos, ypos){
 	// Draws line from this to other.
 	this.drawLineTo = function(other){
 		push();
-		stroke(this.colorCode);
-
 		var distance = this.getDistance(other);
-		var sWeight = map(distance, 0, maxDistance, 1, 0);
-		sWeight = sWeight < 0 ? 0 : sWeight;
-		strokeWeight(sWeight);
+		var alpha = map(distance, 0, maxDistance, 255, 0);
+		stroke(
+			this.colorCode.levels[0],
+			this.colorCode.levels[1],
+			this.colorCode.levels[2],
+			alpha
+		);
 		line(this.pos.x, this.pos.y, other.pos.x, other.pos.y);
 		pop();
 	}
 
 	this.move = function(){
 		// Move.
-		this.vel.limit(speed);
 		this.pos.add(this.vel);
 
 		// Within borders?
