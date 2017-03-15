@@ -1,6 +1,6 @@
 var dots = [];
 var speed = 0.2;
-var maxDistance = 250;
+var maxDistance = 350;
 var nrOfDots = 50;
 
 var middle;
@@ -18,7 +18,7 @@ function setup() {
 }
 
 function draw() {
-	background(0, 50);
+	background(0, 255);
 
 	// Every dot...
 	for(i in dots){
