@@ -1,9 +1,9 @@
 var dots = [];
 var initialDotSpeed = 0.1;
 var gravityStrength = 10;
-var maxDistance = 300;
+var maxDistance = 500;
 var nrOfDots = 25;
-var maxNeighbors = 5;
+var maxNeighbors = 10;
 var gravityCenter = true;
 
 var middle;
@@ -14,13 +14,13 @@ function setup() {
 
 	// Create dots.
 	for(var i = 0; i < nrOfDots; i++){
-		dots.push(new Dot(random(width), random(height)));
-		// dots.push(new Dot(width * 0.5, height * 0.25));
+		// dots.push(new Dot(random(width), random(height)));
+		dots.push(new Dot(random(width * 0.2, width * 0.8), height * 0.4));
 	}
 }
 
 function draw() {
-	background(0, 255);
+	background(0, 127);
 	handleNeighbors();
 	// showDots();
 	moveDots();
