@@ -1,1 +1,1 @@
-Digital star gazing. Except beautiful to watch, this is barely useful.
+Contribution to an art project called The Tripp-sitter.
