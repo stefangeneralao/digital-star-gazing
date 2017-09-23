@@ -1,1 +1,1 @@
-Contribution to an art project called The Tripp-sitter.
+Contribution to an art project called The Trip-sitter.
